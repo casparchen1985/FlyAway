@@ -1,3 +1,5 @@
+package com.caspar.flyaway.di
+
 import com.caspar.flyaway.model.Currencies
 import com.caspar.flyaway.model.CurrencyApiManager
 import com.caspar.flyaway.model.CurrencyStatus
@@ -7,11 +9,12 @@ import com.caspar.flyaway.model.FlightApiManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.create
 import javax.inject.Singleton
 
 @Module
-@InstallIn(Singleton::class)
+@InstallIn(SingletonComponent::class)
 class ApiManagerModule {
 
     @Singleton
