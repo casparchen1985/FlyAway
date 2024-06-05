@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FlyAway</string>
+    <string name="fly_api_url">https://e-traffic.taichung.gov.tw/DataAPI/api/AirPortFlyAPI/</string>
+    <string name="currency_api_url">https://api.freecurrencyapi.com/v1/</string>
+    <string name="currency_key">fca_live_x4dlQYM9Cz03tcIs3fcxiGLxmsIzGjVimzsm1rL1</string>
 </resources>
