@@ -8,11 +8,11 @@
         <item name="colorPrimaryDark">@color/teal_700</item>
         <item name="colorOnPrimary">@color/purple_700</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondary">@color/grass</item>
         <item name="colorSecondaryVariant">@color/grass</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/orange</item>
+        <item name="android:statusBarColor">@color/grass</item>
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/white</item>
     </style>

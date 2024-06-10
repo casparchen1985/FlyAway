@@ -24,7 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="10dp"
         android:layout_marginBottom="-5dp"
-        android:background="@color/orange"
+        android:background="@color/grass"
         app:layout_constraintBottom_toBottomOf="@id/departure_button"
         app:layout_constraintEnd_toEndOf="@id/departure_button"
         app:layout_constraintStart_toStartOf="@id/departure_button" />
