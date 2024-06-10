@@ -1,9 +1,7 @@
 package com.caspar.flyaway.di
 
-import com.caspar.flyaway.model.Currencies
+import com.caspar.flyaway.model.Currency
 import com.caspar.flyaway.model.CurrencyApiManager
-import com.caspar.flyaway.model.CurrencyStatus
-import com.caspar.flyaway.model.ExchangeRates
 import com.caspar.flyaway.model.Flight
 import com.caspar.flyaway.model.FlightApiManager
 import dagger.Module
@@ -25,19 +23,7 @@ class ApiManagerModule {
 
     @Singleton
     @Provides
-    fun providesStatusService(): CurrencyStatus {
-        return CurrencyApiManager.retrofit!!.create<CurrencyStatus>()
-    }
-
-    @Singleton
-    @Provides
-    fun providesCurrenciesService(): Currencies {
-        return CurrencyApiManager.retrofit!!.create<Currencies>()
-    }
-
-    @Singleton
-    @Provides
-    fun providesExchangeService(): ExchangeRates {
-        return CurrencyApiManager.retrofit!!.create<ExchangeRates>()
+    fun providesCurrencyService(): Currency {
+        return CurrencyApiManager.retrofit!!.create<Currency>()
     }
 }

@@ -1,7 +1,6 @@
 package com.caspar.flyaway.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.caspar.flyaway.R
@@ -14,7 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNaviView: BottomNavigationView
     private lateinit var vp2: ViewPager2
@@ -23,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         CurrencyFragment(),
     )
     private val defaultFragment = Pair(0, R.id.bottomNaviFlight)
+//    private val defaultFragment = Pair(1, R.id.bottomNaviCurrency)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

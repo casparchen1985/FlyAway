@@ -77,17 +77,19 @@ object CurrencyApiManager {
         }
 }
 
-interface CurrencyStatus {
-    @GET("status")
-    suspend fun fetchCurrencyStatus(@QueryMap string: Map<String, String>): Response<QuotaResult>
-}
-
-interface Currencies {
-    @GET("currencies")
+interface Currency {
+    @GET("currencies/?")
     suspend fun fetchCurrencies(@QueryMap string: Map<String, String>): Response<CurrencyResult>
-}
 
-interface ExchangeRates {
-    @GET("latest")
+    @GET("currencies")
+    suspend fun fetchCurrencies(): Response<CurrencyResult>
+
+    @GET("status")
+    suspend fun fetchApiStatus(@QueryMap string: Map<String, String>): Response<QuotaResult>
+
+    @GET("latest/?")
     suspend fun fetchExchangeRates(@QueryMap string: Map<String, String>): Response<ExchangeResult>
+
+    @GET("latest")
+    suspend fun fetchExchangeRates(): Response<ExchangeResult>
 }

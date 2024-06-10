@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FlyAway</string>
     <string name="fly_api_url">https://e-traffic.taichung.gov.tw\/DataAPI\/api\/AirPortFlyAPI\/</string>
-    <string name="currency_api_url">https://api.freecurrencyapi.com/v1/</string>
+    <string name="currency_api_url">https://api.freecurrencyapi.com\/v1\/</string>
     <string name="currency_key">fca_live_x4dlQYM9Cz03tcIs3fcxiGLxmsIzGjVimzsm1rL1</string>
     <string name="bottom_navi_flight">航班</string>
     <string name="bottom_navi_currency">匯率</string>
@@ -15,4 +15,5 @@
     <string name="tag_departure">departure</string>
     <string name="tag_arrival">arrival</string>
     <string name="empty_flight_wording">沒有可顯示的資料，請設定其他條件</string>
+    <string name="empty_currency_wording">沒有可顯示的資料，請稍後重試</string>
 </resources>
