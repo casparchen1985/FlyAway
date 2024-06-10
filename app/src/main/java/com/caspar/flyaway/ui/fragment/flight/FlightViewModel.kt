@@ -57,12 +57,8 @@ class FlightViewModel @Inject constructor(
                 newPair.second.toAPICode()
             )
 
-            flightInfoLiveData.postValue(
-                if (data != null) {
-                    current = newPair
-                    data
-                } else emptyList()
-            )
+            flightInfoLiveData.postValue(data ?: emptyList())
+            current = newPair
 
             // 用 coroutine + delay 達到計時器的功能
             autoRefreshJob?.cancel()

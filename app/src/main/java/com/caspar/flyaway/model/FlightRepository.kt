@@ -20,7 +20,7 @@ class FlightRepositoryImpl @Inject constructor(
         try {
             response = apiService.fetchFlightInfo(type, airport)
         } catch (e: Exception) {
-            Log.d("Flight api exception", e.message.toString())
+            Log.d("cas", "Flight api exception:\n${e.message}")
         }
 
         return when {
@@ -29,6 +29,7 @@ class FlightRepositoryImpl @Inject constructor(
                 Log.d("cas", "Flight api error message:\n${response.errorBody()!!.string()}")
                 null
             }
+
             else -> response.body()
         }
     }

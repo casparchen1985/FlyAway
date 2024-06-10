@@ -94,6 +94,7 @@ class FlightFragment : Fragment() {
             Log.d("cas", "${it.size} FlightInfo records")
             flightAdapter.submitList(it)
             showEmptyMessage(it.isEmpty())
+            showProgressBar(false)
         }
     }
 
