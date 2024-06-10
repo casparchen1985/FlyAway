@@ -65,8 +65,22 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/departure_button" />
 
+    <TextView
+        android:id="@+id/empty_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_flight_wording"
+        android:textColor="@color/gray_dark"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/select_indicator"
+        app:layout_constraintVertical_bias="0.33" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/display_view"
+        android:id="@+id/flight_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
@@ -79,7 +93,7 @@
         android:layout_height="0dp"
         android:background="@color/gray_alpha80"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/display_view">
+        app:layout_constraintTop_toTopOf="@id/flight_recycler_view">
 
         <ProgressBar
             android:id="@+id/progress_bar"

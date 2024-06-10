@@ -14,4 +14,5 @@
     <string name="actual_time_title">實際時間</string>
     <string name="tag_departure">departure</string>
     <string name="tag_arrival">arrival</string>
+    <string name="empty_flight_wording">沒有可顯示的資料，請設定其他條件</string>
 </resources>

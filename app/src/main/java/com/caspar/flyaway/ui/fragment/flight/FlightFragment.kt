@@ -47,7 +47,7 @@ class FlightFragment : Fragment() {
         flightAdapter.setOnListChangedLambda {
             showProgressBar(false)
         }
-        flightRecyclerView = binding.displayView
+        flightRecyclerView = binding.flightRecyclerView
         flightRecyclerView.apply {
             adapter = flightAdapter
             layoutManager = flightLayoutManager
@@ -93,6 +93,7 @@ class FlightFragment : Fragment() {
         viewModel.flightInfoLiveData.observe(viewLifecycleOwner) {
             Log.d("cas", "${it.size} FlightInfo records")
             flightAdapter.submitList(it)
+            showEmptyMessage(it.isEmpty())
         }
     }
 
@@ -132,5 +133,15 @@ class FlightFragment : Fragment() {
             ConstraintSet.END
         )
         newSet.applyTo(parentLayout)
+    }
+
+    private fun showEmptyMessage(setting: Boolean) {
+        with(binding) {
+            val targetEmptyMessageStatus = if (setting) View.VISIBLE else View.GONE
+            if (emptyMessage.visibility == targetEmptyMessageStatus) return
+
+            emptyMessage.visibility = if (setting) View.VISIBLE else View.GONE
+            flightRecyclerView.visibility = if (setting) View.GONE else View.VISIBLE
+        }
     }
 }
