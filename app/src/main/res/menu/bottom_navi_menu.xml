@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomNaviFlight"
+        android:enabled="true"
+        android:icon="@drawable/airplane"
+        android:title="@string/bottom_navi_flight" />
+
+    <item
+        android:id="@+id/bottomNaviCurrency"
+        android:enabled="true"
+        android:icon="@drawable/currency"
+        android:title="@string/bottom_navi_currency" />
+</menu>

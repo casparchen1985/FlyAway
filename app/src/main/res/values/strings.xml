@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">FlyAway</string>
-    <string name="fly_api_url">https://e-traffic.taichung.gov.tw/DataAPI/api/AirPortFlyAPI/</string>
+    <string name="fly_api_url">https://e-traffic.taichung.gov.tw\/DataAPI\/api\/AirPortFlyAPI\/</string>
     <string name="currency_api_url">https://api.freecurrencyapi.com/v1/</string>
     <string name="currency_key">fca_live_x4dlQYM9Cz03tcIs3fcxiGLxmsIzGjVimzsm1rL1</string>
+    <string name="bottom_navi_flight">航班</string>
+    <string name="bottom_navi_currency">匯率</string>
+    <string name="bottom_departure_description">Departure Button</string>
+    <string name="bottom_departure_text">出境航班</string>
+    <string name="bottom_arrival_description">Arrival Button</string>
+    <string name="bottom_arrival_text">入境航班</string>
+    <string name="schedule_time_title">表定時間</string>
+    <string name="estimate_time_title">目前預計時間</string>
+    <string name="actual_time_title">實際時間</string>
+    <string name="tag_departure">departure</string>
+    <string name="tag_arrival">arrival</string>
 </resources>

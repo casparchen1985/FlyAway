@@ -33,7 +33,7 @@ data class FlightInfo(
     @SerializedName("Terminal")
     val terminal: String = "",
     @SerializedName("Gate")
-    val gate: String = "",
+    val gate: String? = null,
     @SerializedName("UpdateTime")
     val updateTime: String = "",
 ) : Parcelable

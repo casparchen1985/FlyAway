@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.FlyAway" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.FlyAway" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimaryVariant">@color/tiffany</item>
+        <item name="colorPrimaryDark">@color/teal_700</item>
+        <item name="colorOnPrimary">@color/purple_700</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/grass</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/orange</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/white</item>
+    </style>
 </resources>

@@ -13,7 +13,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.QueryMap
+import retrofit2.http.Path
 import java.util.Collections
 import java.util.concurrent.TimeUnit
 
@@ -65,6 +65,9 @@ object FlightApiManager {
 }
 
 interface Flight {
-    @GET(".")
-    suspend fun fetchFlight(@QueryMap string: Map<String, String>): Response<List<FlightInfo>>
+    @GET("{flyType}/{airPortID}")
+    suspend fun fetchFlightInfo(
+        @Path("flyType") type: String,
+        @Path("airPortID") airport: String
+    ): Response<List<FlightInfo>>
 }

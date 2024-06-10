@@ -6,16 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.flight.FlightFragment">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is Flight Fragment"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/departure_button"
+        style="@style/DefaultButton"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/gray"
+        android:drawableStart="@drawable/flight_departures"
+        android:tag="@string/tag_departure"
+        android:text="@string/bottom_departure_text"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/arrival_button"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/arrival_button"
+        style="@style/DefaultButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/gray"
+        android:drawableStart="@drawable/flight_arrival"
+        android:tag="@string/tag_arrival"
+        android:text="@string/bottom_arrival_text"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/departure_button"
+        app:layout_constraintLeft_toRightOf="@id/departure_button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/departure_button" />
+
+    <View
+        android:id="@+id/select_indicator"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="@id/departure_button"
+        app:layout_constraintStart_toStartOf="@id/departure_button"
+        app:layout_constraintTop_toBottomOf="@id/departure_button" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/display_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/departure_button" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/progress_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/gray_alpha80"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/display_view">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
