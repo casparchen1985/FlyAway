@@ -71,6 +71,7 @@ class FlightFragment : Fragment() {
                     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                         viewModel.fetchFlightInfo(p2)
                     }
+
                     // do nothing
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
                 }
@@ -90,7 +91,7 @@ class FlightFragment : Fragment() {
         }
 
         viewModel.flightInfoLiveData.observe(viewLifecycleOwner) {
-            Log.d("cas", "flightInfoLiveData: ${it.size} records")
+            Log.d("cas", "${it.size} FlightInfo records")
             flightAdapter.submitList(it)
         }
     }
@@ -98,6 +99,11 @@ class FlightFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.fetchFlightInfo()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.stopAutoRefresh()
     }
 
     override fun onDestroyView() {

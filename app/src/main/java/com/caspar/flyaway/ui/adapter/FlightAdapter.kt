@@ -62,14 +62,11 @@ class FlightAdapter : ListAdapter<FlightInfo, FlightAdapter.FlightViewHolder>(Di
         }
 
         private fun doesContainKeyword(stringList: List<String>, keyword: String): Boolean {
-            Log.d("cas", "doesContainKeyword keyword:$keyword")
             stringList.forEach {
-                Log.d("cas", "forEach item:$it")
                 if (keyword.contains(it)) return true
             }
             return false
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightViewHolder {

@@ -9,6 +9,8 @@ import com.caspar.flyaway.model.enumClass.FlightType
 import com.caspar.flyaway.ui.tool.SingleLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,6 +23,8 @@ class FlightViewModel @Inject constructor(
     val defaultAirport = Airport.TPE
     private var current: Pair<FlightType, Airport>? = Pair(defaultType, defaultAirport)
     val allAirports = defaultAirport.getAllDisplayName()
+    private val autoRefreshPeriod = 180 * 1000L
+    private var autoRefreshJob: Job? = null
 
     fun fetchFlightInfo() {
         val newPair = Pair(
@@ -59,6 +63,22 @@ class FlightViewModel @Inject constructor(
                     data
                 } else emptyList()
             )
+
+            // 用 coroutine + delay 達到計時器的功能
+            autoRefreshJob?.cancel()
+            autoRefreshJob = launch(Dispatchers.IO) {
+                delay(autoRefreshPeriod)
+                fetchFlightInfo()
+            }
         }
+    }
+
+    fun stopAutoRefresh() {
+        autoRefreshJob?.cancel()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        autoRefreshJob?.cancel()
     }
 }
