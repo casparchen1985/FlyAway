@@ -6,9 +6,9 @@
     <string name="bottom_navi_flight">航班</string>
     <string name="bottom_navi_currency">匯率</string>
     <string name="bottom_departure_description">Departure Button</string>
-    <string name="bottom_departure_text">出境航班</string>
+    <string name="bottom_departure_text">起飛航班</string>
     <string name="bottom_arrival_description">Arrival Button</string>
-    <string name="bottom_arrival_text">入境航班</string>
+    <string name="bottom_arrival_text">抵達航班</string>
     <string name="schedule_time_title">表定時間</string>
     <string name="estimate_time_title">目前預計時間</string>
     <string name="actual_time_title">實際時間</string>

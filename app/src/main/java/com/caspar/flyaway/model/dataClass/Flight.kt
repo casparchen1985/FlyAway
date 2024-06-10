@@ -31,7 +31,7 @@ data class FlightInfo(
     @SerializedName("Remark")
     val remark: String = "",
     @SerializedName("Terminal")
-    val terminal: String = "",
+    val terminal: String? = null,
     @SerializedName("Gate")
     val gate: String? = null,
     @SerializedName("UpdateTime")

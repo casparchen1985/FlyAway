@@ -5,6 +5,7 @@ import android.content.Context
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -19,13 +20,19 @@ class FlightAdapter : ListAdapter<FlightInfo, FlightAdapter.FlightViewHolder>(Di
     private var onListChangedLambda: (() -> Unit)? = null
 
     class FlightViewHolder(private val binding: CellFlightBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val grayDarkWords = listOf("DEPARTED", "ARRIVED", "出發", "已飛", "已到")
+        private val redWords = listOf("CANCELLED", "取消", "延誤", "DELAY", "關閉")
+        private val yellowWords = listOf("SCHEDULE CHANGE", "更改")
+        private val greenWords = listOf("ON TIME", "準時")
+        private val blueWords = listOf("登機")
+
         @SuppressLint("SetTextI18n")
         fun bindView(info: FlightInfo, context: Context) {
-            with(binding) cell@ {
+            with(binding) cell@{
                 airline.text = info.airline
                 airlineId.text = info.airlineId
                 flightNumber.text = info.flightNumber
-                terminal.text = info.terminal + " 航廈"
+                terminal.text = (info.terminal ?: "N/A") + " 航廈"
                 gate.text = (info.gate ?: "N/A") + " 登機門"
                 departureAirport.text = info.departureAirport + "(" + info.departureAirportId + ")"
                 arrivalAirport.text = info.arrivalAirport + "(" + info.arrivalAirportId + ")"
@@ -34,19 +41,14 @@ class FlightAdapter : ListAdapter<FlightInfo, FlightAdapter.FlightViewHolder>(Di
                 actualTime.text = info.actualTime
                 with(info.remark) {
                     val fontColor =
-                        if (this.contains("DEPARTED") || this.contains("ARRIVED")) {
-                            R.color.gray_dark
-                        } else if (this.contains("CANCELLED")) {
-                            R.color.red
-                        } else if (this.contains("SCHEDULE CHANGE")) {
-                            R.color.yellow
-                        } else if (this.contains("ON TIME")) {
-                            R.color.green
-                        } else {
-                            // Cargo Only
-                            R.color.black
+                        when {
+                            doesContainKeyword(grayDarkWords, this) -> R.color.gray_dark
+                            doesContainKeyword(redWords, this) -> R.color.red
+                            doesContainKeyword(yellowWords, this) -> R.color.yellow
+                            doesContainKeyword(greenWords, this) -> R.color.green
+                            doesContainKeyword(blueWords, this) -> R.color.blue
+                            else -> R.color.black
                         }
-
                     val spanString = SpannableString(this)
                     spanString.setSpan(
                         ForegroundColorSpan(context.getColor(fontColor)),
@@ -58,6 +60,16 @@ class FlightAdapter : ListAdapter<FlightInfo, FlightAdapter.FlightViewHolder>(Di
                 }
             }
         }
+
+        private fun doesContainKeyword(stringList: List<String>, keyword: String): Boolean {
+            Log.d("cas", "doesContainKeyword keyword:$keyword")
+            stringList.forEach {
+                Log.d("cas", "forEach item:$it")
+                if (keyword.contains(it)) return true
+            }
+            return false
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightViewHolder {

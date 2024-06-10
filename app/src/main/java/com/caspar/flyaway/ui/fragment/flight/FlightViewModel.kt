@@ -17,21 +17,47 @@ class FlightViewModel @Inject constructor(
     private val flightRepos: FlightRepository
 ) : ViewModel() {
     val flightInfoLiveData = SingleLiveData<List<FlightInfo>>()
-    private var _current: Pair<FlightType, Airport>? = null
-    val current get() = _current
+    private val defaultType = FlightType.Departure
+    val defaultAirport = Airport.TPE
+    private var current: Pair<FlightType, Airport>? = Pair(defaultType, defaultAirport)
+    val allAirports = defaultAirport.getAllDisplayName()
 
-    fun fetchFlightInfo(type: FlightType, airport: Airport) {
+    fun fetchFlightInfo() {
+        val newPair = Pair(
+            current?.first ?: defaultType,
+            current?.second ?: defaultAirport
+        )
+        getAndPostFlightInfo(newPair)
+    }
+
+    fun fetchFlightInfo(index: Int) {
+        val newPair = Pair(
+            current?.first ?: defaultType,
+            defaultAirport.getItemByPosition(index)
+        )
+        getAndPostFlightInfo(newPair)
+    }
+
+    fun fetchFlightInfo(type: FlightType) {
+        val newPair = Pair(
+            type,
+            current?.second ?: defaultAirport,
+        )
+        getAndPostFlightInfo(newPair)
+    }
+
+    private fun getAndPostFlightInfo(newPair: Pair<FlightType, Airport>) {
         viewModelScope.launch(Dispatchers.IO) {
-            val data = flightRepos.fetchFlightInfo(type.toAPICode(), airport.toAPICode())
+            val data = flightRepos.fetchFlightInfo(
+                newPair.first.toAPICode(),
+                newPair.second.toAPICode()
+            )
 
             flightInfoLiveData.postValue(
-                if (data?.isNotEmpty() == true) {
-                    _current = Pair(type, airport)
+                if (data != null) {
+                    current = newPair
                     data
-                } else {
-                    if (data == null) _current = null
-                    emptyList()
-                }
+                } else emptyList()
             )
         }
     }

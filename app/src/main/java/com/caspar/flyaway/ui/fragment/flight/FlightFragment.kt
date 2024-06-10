@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
@@ -13,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.caspar.flyaway.R
 import com.caspar.flyaway.databinding.FragmentFlightBinding
-import com.caspar.flyaway.model.enumClass.Airport
 import com.caspar.flyaway.model.enumClass.FlightType
 import com.caspar.flyaway.ui.adapter.FlightAdapter
 import com.caspar.flyaway.ui.decoration.FlightDecoration
@@ -24,8 +25,6 @@ class FlightFragment : Fragment() {
     private var _binding: FragmentFlightBinding? = null
     private val binding get() = _binding!!
     private val viewModel: FlightViewModel by viewModels()
-    private val defaultType = FlightType.Departure
-    private val defaultAirport = Airport.TPE
     private lateinit var flightRecyclerView: RecyclerView
     private lateinit var flightAdapter: FlightAdapter
     private lateinit var flightLayoutManager: LinearLayoutManager
@@ -57,16 +56,36 @@ class FlightFragment : Fragment() {
         }
 
         with(binding) {
+            airportSpinner.apply {
+                adapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_spinner_dropdown_item,
+                    viewModel.allAirports
+                )
+                viewModel.allAirports.forEachIndexed { index, string ->
+                    if (string.contains(viewModel.defaultAirport.name)) {
+                        setSelection(index, false)
+                    }
+                }
+                onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                        viewModel.fetchFlightInfo(p2)
+                    }
+                    // do nothing
+                    override fun onNothingSelected(p0: AdapterView<*>?) {}
+                }
+            }
+
             departureButton.setOnClickListener {
                 showProgressBar(true)
                 showIndicator(it)
-                viewModel.fetchFlightInfo(FlightType.Departure, Airport.TPE)
+                viewModel.fetchFlightInfo(FlightType.Departure)
             }
 
             arrivalButton.setOnClickListener {
                 showProgressBar(true)
                 showIndicator(it)
-                viewModel.fetchFlightInfo(FlightType.Arrival, Airport.TPE)
+                viewModel.fetchFlightInfo(FlightType.Arrival)
             }
         }
 
@@ -78,10 +97,7 @@ class FlightFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.fetchFlightInfo(
-            viewModel.current?.first ?: defaultType,
-            viewModel.current?.second ?: defaultAirport
-        )
+        viewModel.fetchFlightInfo()
     }
 
     override fun onDestroyView() {

@@ -27,7 +27,7 @@ class FlightRepositoryImpl @Inject constructor(
             response?.body() == null -> null
             response.errorBody()?.string()?.isNotEmpty() == true -> {
                 Log.d("cas", "flight error message:\n${response.errorBody()!!.string()}")
-                emptyList()
+                null
             }
 
             else -> response.body()
